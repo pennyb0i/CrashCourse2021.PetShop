@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CrashCourse2021.PetShop.Core\CrashCourse2021.PetShop.Core.csproj" />
+    </ItemGroup>
+
+</Project>
