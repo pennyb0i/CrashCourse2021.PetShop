@@ -26,6 +26,12 @@ namespace CrashCourse2021.PetShop.UI
             }
         }
 
+        private static void Pause()
+        {
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+
         public void Start()
         {
             int selection;
@@ -35,11 +41,19 @@ namespace CrashCourse2021.PetShop.UI
                 switch (selection)
                 {
                     case 1:
-                        _petService.Add()
+                        _petService.Add(CreateNewPet());
+                        break;
                     case 2:
                         _petTypeService.Add(CreateNewPetType());
                         break;
+                    case 3:
+                        PrintAllPets();
+                        break;
+                    case 4:
+                        _petService.Delete(DeletePet());
+                        break;
                 }
+                Pause();
             } while (selection != 0);
         }
 
@@ -51,23 +65,24 @@ namespace CrashCourse2021.PetShop.UI
             Console.WriteLine(StringConstants.AddPetMenuText);
             Console.WriteLine(StringConstants.AddPetTypeMenuText);
             Console.WriteLine(StringConstants.ShowAllPetsMenuText);
+            Console.WriteLine(StringConstants.DeletePetMenuText);
 
             Console.WriteLine(StringConstants.ExitMenuText);
         }
         
         private int GetMainMenuSelection()
         {
-            var selectedOption = Console.ReadKey();
             int selection;
             do
             {
                 ShowOptions();
+                var selectedOption = Console.ReadKey();
                 selection = selectedOption.KeyChar - '0';
-                if (selection < 0 || selection > 3)
+                if (selection < 0 || selection > 4)
                 {
                     Console.WriteLine(StringConstants.PleaseSelectCorrectItem);
                 }
-            } while (selection < 0 || selection > 3);
+            } while (selection < 0 || selection > 4);
             return selection;
         }
 
@@ -92,18 +107,20 @@ namespace CrashCourse2021.PetShop.UI
             Console.WriteLine(StringConstants.PetColorLine);
             newPet.Color = Console.ReadLine();
             Console.WriteLine(StringConstants.PetBirthDateLine);
-            newPet.Color = Console.ReadLine();
+            newPet.BirthDate = GetBirthDate();
+            Console.WriteLine(StringConstants.PetPriceLine);
+            newPet.Price = int.Parse(Console.ReadLine() ?? throw new ArgumentException("Invalid number"));
             Console.WriteLine($"{newPet.Name} successfully added.");
             return newPet;
         }
 
         private PetType SelectPetType()
         {
-            var selectedOption = Console.ReadKey();
             int selection;
             do
             {
-                _petTypeService.GetPetTypes().ForEach(type => Console.Write(type.ToString()));
+                _petTypeService.GetPetTypes().ForEach(type => Console.WriteLine(type.ToString()));
+                var selectedOption = Console.ReadKey();
                 
                 selection = selectedOption.KeyChar - '0';
                 if (selection < 0 || selection > _petTypeService.GetPetTypes().Count)
@@ -116,7 +133,28 @@ namespace CrashCourse2021.PetShop.UI
 
         private DateTime GetBirthDate()
         {
-            
+            //Simple implementation
+            return DateTime.Now;
+        }
+        private Pet DeletePet()
+        {
+            int selection;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Select the number of pet to delete:");
+                PrintAllPets();
+                Console.WriteLine(">0: GO BACK<");
+
+                var selectedOption = Console.ReadKey();
+                selection = selectedOption.KeyChar - '0';
+            } while (selection < 0 || selection > _petService.GetPets().Count);
+
+            if (selection == 0) return null;
+            var petToDelete = _petService.FindById(selection);
+            _petService.Delete(petToDelete);
+            Console.WriteLine($"\n{petToDelete.Name} was sent to the butcher.");
+            return petToDelete;
         }
     }
 }

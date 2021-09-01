@@ -8,5 +8,7 @@ namespace CrashCourse2021.PetShop.Core.IServices
         List<Pet> GetPets();
 
         Pet Add(Pet pet);
+        Pet Delete(Pet pet);
+        Pet FindById(int id);
     }
 }

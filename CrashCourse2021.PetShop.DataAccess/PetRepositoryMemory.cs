@@ -15,6 +15,12 @@ namespace CrashCourse2021.PetShop.DataAccess
             _petsTable.Add(pet);
             return pet;
         }
+        
+        public Pet Delete(Pet pet)
+        {
+            _petsTable.Remove(pet);
+            return pet;
+        }
 
         public List<Pet> FindAll()
         {

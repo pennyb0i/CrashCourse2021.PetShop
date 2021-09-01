@@ -22,5 +22,16 @@ namespace CrashCourse2021.PetShop.Domain.Services
             _repo.Add(pet);
             return pet;
         }
+        
+        public Pet Delete(Pet pet)
+        {
+            _repo.Delete(pet);
+            return pet;
+        }
+
+        public Pet FindById(int id)
+        {
+            return GetPets().Find(pet => pet.Id == id);
+        }
     }
 }

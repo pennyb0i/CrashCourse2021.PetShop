@@ -8,7 +8,8 @@
         public const string AddPetMenuText = "1: Add a new pet";
         public const string AddPetTypeMenuText = "2: Add a new pet type";
         public const string ShowAllPetsMenuText = "3: Show all available pets";
-        public const string PleaseSelectCorrectItem = "Please Select a Number Between 0 and 3";
+        public const string DeletePetMenuText = "4: Delete a pet";
+        public const string PleaseSelectCorrectItem = "Please Select a Number Between 0 and 4";
         public const string ExitMenuText = "0: >Exit<";
         /* ADD PET */
         public const string AddPetGreeting = "Add Pet";
@@ -21,9 +22,9 @@
         public const string AddPetTypeGreeting = "Add pet type";
         public const string PetTypeNameLine = "What type of pet are we adding?";
         /* GET BIRTHDATE */
-        public const string DayLine = "Add pet type";
-        public const string PetTypeNameLine = "What type of pet are we adding?";
-        public const string PetTypeNameLine = "What type of pet are we adding?";
+        public const string YearLine = "Year of birth:";
+        public const string MonthLine = "Month of birth:";
+        public const string DayLine = "Day of birth:";
         
     }
 }
