@@ -7,6 +7,7 @@ namespace CrashCourse2021.PetShop.Domain.IRepositories
     {
         List<Pet> FindAll();
         Pet Add(Pet pet);
+        //Pet Edit(Pet pet);
         Pet Delete(Pet pet);
     }
 }

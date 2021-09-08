@@ -21,11 +21,6 @@ namespace CrashCourse2021.PetShop.Domain.Services
         {
             return _repo.Add(petType);
         }
-        
-        public PetType FindByName(string name)
-        {
-            return GetPetTypes().Find(type => type.Name == name);
-        }
 
         public PetType FindById(int id)
         {

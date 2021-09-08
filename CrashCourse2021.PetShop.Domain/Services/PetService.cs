@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CrashCourse2021.PetShop.Core.IServices;
 using CrashCourse2021.PetShop.Core.Models;
 using CrashCourse2021.PetShop.Domain.IRepositories;
@@ -31,7 +32,7 @@ namespace CrashCourse2021.PetShop.Domain.Services
 
         public Pet FindById(int id)
         {
-            return GetPets().Find(pet => pet.Id == id);
+            return GetPets().FirstOrDefault(pet => pet.Id == id);
         }
     }
 }

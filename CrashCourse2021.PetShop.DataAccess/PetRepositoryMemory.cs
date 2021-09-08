@@ -6,7 +6,7 @@ namespace CrashCourse2021.PetShop.DataAccess
 {
     public class PetRepositoryMemory : IPetRepository
     {
-        private static List<Pet> _petsTable = new List<Pet>();
+        private static List<Pet> _petsTable = new();
         private static int _id = 1;
         
         public Pet Add(Pet pet)
@@ -15,7 +15,7 @@ namespace CrashCourse2021.PetShop.DataAccess
             _petsTable.Add(pet);
             return pet;
         }
-        
+
         public Pet Delete(Pet pet)
         {
             _petsTable.Remove(pet);
